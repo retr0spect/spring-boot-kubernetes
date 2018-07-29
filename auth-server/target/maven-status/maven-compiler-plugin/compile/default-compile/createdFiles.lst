@@ -1,0 +1,3 @@
+com/retrospect/auth/security/OAuth2Config.class
+com/retrospect/auth/Oauth2Application.class
+com/retrospect/auth/security/WebSecurityConfigurer.class
