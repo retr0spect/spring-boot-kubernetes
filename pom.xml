@@ -12,9 +12,10 @@
     <description>Spring Boot Kubernetes Parent</description>
 
     <modules>
-        <module>hello-service</module>
-        <module>second-service</module>
-        <module>zuul-proxy</module>
+        <module>order-service</module>
+        <module>order-processor-service</module>
+        <!--<module>zuul-proxy</module>-->
+        <!--<module>auth-server</module>-->
     </modules>
 
     <build>

@@ -66,7 +66,7 @@
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<configuration>
-					<imageName>auth-server</imageName>
+					<imageName>auth-server:v1</imageName>
 					<baseImage>openjdk:8-jdk-alpine</baseImage>
 					<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
 					<!-- copy the service's jar file from target into the root directory of the image -->

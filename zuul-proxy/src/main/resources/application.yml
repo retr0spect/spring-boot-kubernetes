@@ -3,12 +3,12 @@ server:
 
 zuul:
   routes:
-    hello-service:
+    hello-service:v1:
       path: /hello/**
-      url: http://127.0.0.1:8081/
-    second-service:
+      url: http://orderapplication:8081/
+    second-service:v1:
         path: /second/**
-        url: http://127.0.0.1:8082/
+        url: http://second-service:8082/
     google:
       path: /
       url: http://www.google.com
