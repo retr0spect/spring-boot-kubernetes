@@ -29,7 +29,7 @@ public class OrderController {
 
     @RequestMapping(value = "/order", method = RequestMethod.POST)
     public Object createOrder(@RequestBody Order order) throws JsonProcessingException {
-        this.template.convertAndSend(helloQueue.getName(), mapper.writer().withDefaultPrettyPrinter().writeValueAsString(order));
+        this.template.convertAndSend(helloQueue.getName(),  mapper.writer().withDefaultPrettyPrinter().writeValueAsString(order));
         return mapper.writer().withDefaultPrettyPrinter().writeValueAsString(order);
     }
 
