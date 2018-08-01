@@ -1,21 +1,25 @@
 version: '2'
 services:
-  rabbitmqdocker:
-    hostname: rabbitmqdocker
-    image: "rabbitmq:3.7.7-management"
-    ports:
-      - "15672:15672"
-      - "5672:5672"
+#  rabbitmqdocker:
+#    hostname: rabbitmqdocker
+#    image: "rabbitmq:3.7.7-management"
+#    ports:
+#      - "15672:15672"
+#      - "5672:5672"
   orderservice:
     image: order-service:v1
     ports:
       - "8081:8081"
     environment:
-          SECOND_SERVICE_URI: "http://orderprocessorservice:8082/"
-  orderprocessorservice:
-      image: order-processor-service:v1
+      SECOND_SERVICE_URI: "http://orderprocessorservice:8082/"
+  redis:
+      image: redis:alpine
       ports:
-        - "8082:8082"
+        - 6379:6379
+#  orderprocessorservice:
+#    image: order-processor-service:v1
+#    ports:
+#      - "8082:8082"
 #  zuulproxy:
 #        image: zuul-proxy:v1
 #        ports:

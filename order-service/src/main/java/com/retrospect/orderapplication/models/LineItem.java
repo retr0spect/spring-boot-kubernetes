@@ -1,6 +1,8 @@
 package com.retrospect.orderapplication.models;
 
-public class LineItem {
+import java.io.Serializable;
+
+public class LineItem implements Serializable {
     String sku;
     int quantity;
 

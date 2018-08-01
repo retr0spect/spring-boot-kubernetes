@@ -1,6 +1,8 @@
 package com.retrospect.orderapplication.models;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
     long customerId;
     String customerName;
 

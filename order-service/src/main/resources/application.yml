@@ -5,3 +5,10 @@ spring:
   rabbitmq:
     host: rabbitmqdocker
     port: 5672
+  redis:
+      host: redis-13615.c61.us-east-1-3.ec2.cloud.redislabs.com
+      port: 13615
+      password: IthFRgcMii9RHlu72jnVNhfm8fTD5Uju
+  data:
+    mongodb:
+      uri: "mongodb://admin:pass@ds243768.mlab.com:43768/spring2cloud"

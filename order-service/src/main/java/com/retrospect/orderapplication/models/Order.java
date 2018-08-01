@@ -1,27 +1,24 @@
 package com.retrospect.orderapplication.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Order {
-    long orderNumber;
+public class Order implements Serializable {
+    String orderId;
     List<LineItem> lineItems;
     Customer sellToCustomer;
+
+
 
     public Order() {
     }
 
-    public Order(long orderNumber, List<LineItem> lineItems, Customer sellToCustomer) {
-        this.orderNumber = orderNumber;
-        this.lineItems = lineItems;
-        this.sellToCustomer = sellToCustomer;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public long getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(long orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public List<LineItem> getLineItems() {

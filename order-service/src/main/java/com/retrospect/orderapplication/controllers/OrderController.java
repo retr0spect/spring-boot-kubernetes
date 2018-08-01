@@ -3,20 +3,20 @@ package com.retrospect.orderapplication.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.retrospect.orderapplication.models.Order;
-import com.retrospect.orderapplication.services.TheService;
+import com.retrospect.orderapplication.services.OrderService;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController()
+@RequestMapping(value = "v1/orders")
 public class OrderController {
 
     @Autowired
-    TheService theService;
+    OrderService orderService;
 
     @Autowired
     ObjectMapper mapper;
@@ -27,22 +27,30 @@ public class OrderController {
     @Autowired
     private Queue helloQueue;
 
-    @RequestMapping(value = "/order", method = RequestMethod.POST)
-    public Object createOrder(@RequestBody Order order) throws JsonProcessingException {
-        this.template.convertAndSend(helloQueue.getName(),  mapper.writer().withDefaultPrettyPrinter().writeValueAsString(order));
-        return mapper.writer().withDefaultPrettyPrinter().writeValueAsString(order);
-    }
-
-
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String helloSpring() {
-        return "Hello Spring Boot";
-    }
-
     @RequestMapping(value = "/second-service", method = RequestMethod.GET)
     public String secondService() {
-        return theService.getFromSecondService();
+        return orderService.getFromSecondService();
     }
+
+    @RequestMapping(value = "/order", method = RequestMethod.POST)
+    public Order createOrder(@RequestBody Order order) throws JsonProcessingException {
+        order.setOrderId(java.util.UUID.randomUUID().toString());
+        return orderService.saveOrder(order);
+
+        /*this.template.convertAndSend(helloQueue.getName(),  mapper.writer().withDefaultPrettyPrinter().writeValueAsString(order));
+        return mapper.writer().withDefaultPrettyPrinter().writeValueAsString(order);*/
+    }
+
+    @RequestMapping("/")
+    public List<Order> getAllOrder() {
+        return orderService.getAllOrders();
+    }
+
+    @RequestMapping("/{orderId}")
+    public Order getOrder(@PathVariable String orderId) {
+        return orderService.getOrderById(orderId);
+    }
+
+
 
 }
